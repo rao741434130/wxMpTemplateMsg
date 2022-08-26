@@ -1,0 +1,104 @@
+spring:
+  application:
+    name: wxmp
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+#  http:
+#    encoding:
+#      charset: UTF-8
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss #如果使用字符串表示，用这行设置格式
+#    timezone: GMT+8
+#    default-property-inclusion: non_null
+#  aop:
+#    proxy-target-class: true
+
+
+#  cloud:
+#    compatibility-verifier:
+#      enabled: false
+#---
+#spring:
+#  redis:
+#    port: 6379
+#    host: 127.0.0.1
+##    password: XunBao123
+#    database: 11
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: admin
+#    url: jdbc:mysql://192.168.100.181:3306/jhlj-sing?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+#  servlet:
+#    multipart:
+#      max-file-size: 50MB
+#      max-request-size: 50MB
+#      resolve-lazily: true
+
+server:
+  tomcat:
+    remote-ip-header: X-FORWARDED-FOR
+    protocol-header: X-Forwarded-Proto
+    port-header: X-Forwarded-Port
+    max-swallow-size: 100MB
+  port: 8807
+  servlet:
+    context-path: /jhlj-sing-crm
+  use-forward-headers: true
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  global-config:
+    db-config:
+      select-strategy: not_empty
+
+
+logging:
+  level:
+    com:
+      wx:
+        mp:
+#          crm: DEBUG
+#          biz: DEBUG
+#          common: info
+  file:
+    name: /var/log/jhlj-sing-crm/deploy.log
+
+## 自定义配置
+id-worker:
+  snowflake-id:
+    worker-id: 0 # 取值范围0-31，该值固定取值0（当启用多区域集群使用）
+    data-center-id: 0 # 取值范围0-31，仅使用该值作为集群中的标识，当集群超过32台设备再启用worker-id
+
+
+wx:
+  #
+  mp:
+    appId:
+    secret:
+    token:
+    aesKey:
+
+xxl:
+  job:
+    admin:
+      addresses: http://localhost:8080/xxl-job-admin
+    executor:
+      ip:
+      logpath: /data/applogs/xxl-job/jobhandler
+      port: 9979
+      appname: sing-crm
+      logretentiondays: 1
+    accessToken:
+
+# JWT
+jwt:
+  header: Authorization
+  secret: mySecret
+  #token有效期一天
+  expiration: 86400
+  tokenHead: "Bearer "

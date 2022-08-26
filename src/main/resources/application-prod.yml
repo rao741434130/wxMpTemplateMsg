@@ -1,0 +1,130 @@
+spring:
+  application:
+    name: jhlj-sing-crm
+  profiles:
+    active: prod
+  main:
+    allow-bean-definition-overriding: true
+  http:
+    encoding:
+      charset: UTF-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss #如果使用字符串表示，用这行设置格式
+    timezone: GMT+8
+    default-property-inclusion: non_null
+  aop:
+    proxy-target-class: true
+
+
+  cloud:
+    compatibility-verifier:
+      enabled: false
+---
+spring:
+  redis:
+    port: 6379
+    host: 127.0.0.1
+    password: 123456
+    database: 11
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: sing
+    password: 7Ed7f4dJqLSsF7oi
+    url: jdbc:mysql://rm-bp1ye7x54w051j4qggo.mysql.rds.aliyuncs.com:3306/jhlj-sing?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+      resolve-lazily: true
+server:
+  tomcat:
+    remote-ip-header: X-FORWARDED-FOR
+    protocol-header: X-Forwarded-Proto
+    port-header: X-Forwarded-Port
+    max-swallow-size: 100MB
+  port: 8807
+  servlet:
+    context-path: /crm
+  use-forward-headers: true
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  global-config:
+    db-config:
+      select-strategy: not_empty
+
+logging:
+  level:
+    com:
+      jhlj:
+        sing:
+          crm: DEBUG
+          biz: DEBUG
+          common: info
+  file:
+    name: /var/log/jhlj-sing-crm/deploy.log
+
+#swagger前缀
+swagger:
+  prefix: swagger-ui.html
+
+mconfig:
+  swagger-ui-open: true
+
+## 自定义配置
+id-worker:
+  snowflake-id:
+    worker-id: 0 # 取值范围0-31，该值固定取值0（当启用多区域集群使用）
+    data-center-id: 0 # 取值范围0-31，仅使用该值作为集群中的标识，当集群超过32台设备再启用worker-id
+
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params:
+    count: countSql
+
+wx:
+  appId: wxac8bbb7fbb7e1299
+  logSecret: 664cfa0b8f9059fad0f3ac025676b8c3
+  mchId: 1617546216
+  mchKey: HhFSOKWeCnvgCjTitLjrpc05OgfMF7U7      #微信商户平台-账户设置-安全设置-api安全,配置32位key
+  keyPath: /usr/local/sing/apiclient_cert.p12    #小程序证书地址
+  privateKeyPath: /usr/local/sing/apiclient_key.pem
+  privateCertPath: /usr/local/sing/apiclient_cert.pem
+  apiV3Key: 5Vo5gPsWcQhGdyQD1RvLjWpQoJq6i80S
+  refundNotifyUrl: https://sing.365bichang.com/member/pay/wxRefundNotify #退款回调
+  notifyUrl: https://sing.365bichang.com/member/pay/wxNotify #支付回调
+  subAppId:
+  subMchId:
+  accessTokenUrl: https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code
+  silentCodeUrl: https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_base
+  userInfoUrl: https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN
+  jsapi_ticket: https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=%s&type=jsapi
+  jsaccess_token: https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s
+  serviceId: "00002027000000164663798255711328"
+  payScoreNotifyUrl: https://sing.365bichang.com/member/pay/wxScoreNotify #支付分的回调
+  payNotifyUrl: https://sing.365bichang.com/member/pay/payNotify #不做开锁的支付回调
+
+xxl:
+  job:
+    admin:
+      addresses: http://localhost:8080/xxl-job-admin
+    executor:
+      ip:
+      logpath: /data/applogs/xxl-job/jobhandler
+      port: 9979
+      appname: sing-crm
+      logretentiondays: 1
+    accessToken:
+
+# JWT
+jwt:
+  header: Authorization
+  secret: mySecret
+  #token有效期一天
+  expiration: 86400
+  tokenHead: "Bearer "
