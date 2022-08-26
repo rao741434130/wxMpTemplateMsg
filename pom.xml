@@ -31,11 +31,11 @@
             <version>2.9.8.BETA</version>
         </dependency>
         <!--3.0.0版本失效的话使用3.6.0-->
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-mp</artifactId>
-            <version>3.0.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.github.binarywang</groupId>-->
+<!--            <artifactId>weixin-java-mp</artifactId>-->
+<!--            <version>3.0.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -50,6 +50,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>${springBoot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.56</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>4.1.0</version>
         </dependency>
     </dependencies>
 

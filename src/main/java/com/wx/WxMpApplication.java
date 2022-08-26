@@ -1,4 +1,4 @@
-package com.wx.mp;
+package com.wx;
 
 
 import org.springframework.boot.SpringApplication;

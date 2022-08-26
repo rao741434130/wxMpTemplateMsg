@@ -45,8 +45,8 @@ server:
     max-swallow-size: 100MB
   port: 8807
   servlet:
-    context-path: /jhlj-sing-crm
-  use-forward-headers: true
+    context-path: /wxmp
+#  use-forward-headers: true
 
 mybatis-plus:
   configuration:
@@ -78,8 +78,8 @@ id-worker:
 wx:
   #
   mp:
-    appId:
-    secret:
+    appId: wx20f2ee95f3deb7f2
+    secret: 47781e8071a54a881fe688401a895aa5
     token:
     aesKey:
 
