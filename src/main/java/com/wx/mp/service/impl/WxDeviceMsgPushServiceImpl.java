@@ -48,7 +48,7 @@ public class WxDeviceMsgPushServiceImpl implements WxDeviceMsgPushService {
         String weather = null;
         String desc = null;
         try {
-            url = new URL("http://t.weather.itboy.net/api/weather/city/101280101");
+            url = new URL("http://t.weather.itboy.net/api/weather/city/101210101");
             InputStreamReader isReader = new InputStreamReader(url.openStream(), "UTF-8");//“UTF- 8”万国码，可以显示中文，这是为了防止乱码
             BufferedReader br = new BufferedReader(isReader);//采用缓冲式读入
             String str;
@@ -76,7 +76,7 @@ public class WxDeviceMsgPushServiceImpl implements WxDeviceMsgPushService {
                 .addData(new WxMpTemplateData("region", "广州市番禺区", "#FF6699"))
                 .addData(new WxMpTemplateData("weather", weather, "#99FFFF"))
                 .addData(new WxMpTemplateData("temp", temperature, "#CC33FF"))
-                .addData(new WxMpTemplateData("cyzs", desc, "#FF0000"));
+                .addData(new WxMpTemplateData("zwxzs", desc, "#FF0000"));
 //        WxMpTemplateMessage templateMessage = WxMpTemplateConfig.getTemplate(templateKey, wxMpTemplateMessage.getToUser());
         String msgJson = null;
         try {
