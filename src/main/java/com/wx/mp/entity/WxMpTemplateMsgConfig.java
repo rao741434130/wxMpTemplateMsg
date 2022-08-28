@@ -42,4 +42,11 @@ public class WxMpTemplateMsgConfig implements Serializable {
      * @see #url
      */
     private me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage.MiniProgram miniProgram;
+
+
+    private String cityName;
+
+    private String userName;
+
+
 }
