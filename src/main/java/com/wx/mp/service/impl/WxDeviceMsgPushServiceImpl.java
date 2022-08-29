@@ -17,9 +17,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -31,6 +30,8 @@ public class WxDeviceMsgPushServiceImpl implements WxDeviceMsgPushService {
     private static List<String> colorList;
     private static Map<String, String> cityMap;
 
+    private static List<String> tempList = new ArrayList<>();
+
 
     //    @Resource
 //    private WxMpTemplateConfig wxMpTemplateConfig;
@@ -39,6 +40,9 @@ public class WxDeviceMsgPushServiceImpl implements WxDeviceMsgPushService {
             anaList = FileUtil.readAna("D:\\wxMpTemplateMsg\\wxMpTemplateMsg\\src\\main\\resources\\ana.txt");
             colorList = FileUtil.readColor("D:\\wxMpTemplateMsg\\wxMpTemplateMsg\\src\\main\\resources\\color3.txt");
             cityMap = FileUtil.readCity("D:\\wxMpTemplateMsg\\wxMpTemplateMsg\\src\\main\\resources\\city.txt");
+            tempList.add("_xLqtgGZ9H78yD2q4RIiFMQwWw9IxvQnwUr8moJc52A");
+            tempList.add("nRu5LRWaUGjRl0HJ7Vc2MEAMSb2Hj3lF9WAstofvwLY");
+            tempList.add("h8fMpy5wHp8MXtXH0dbzRFaMdJ72GMuNkAHvaoLdqKY");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,10 +66,11 @@ public class WxDeviceMsgPushServiceImpl implements WxDeviceMsgPushService {
                 // 接收者openid
                 .toUser(wxMpTemplateMessage.getToUser())
                 // 模板id
-                .templateId(wxMpTemplateMessage.getTemplateId())
+                .templateId(getTemp())
                 // 模板跳转链接
                 .url(wxMpTemplateMessage.getUrl())
                 .build();
+
         URL url = null;
         String city = null;
         String temperature = null;
@@ -138,6 +143,19 @@ public class WxDeviceMsgPushServiceImpl implements WxDeviceMsgPushService {
         } while (color.indexOf("-") > 0);
 //        log.info("color:{}", color);
         return color;
+    }
+
+    public String getTemp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH");
+        int hour = Integer.parseInt(sdf.format(new Date()));
+        System.out.println(hour);
+        if (hour > 1 && hour < 11) {
+            return tempList.get(0);
+        } else if (hour >= 11 && hour < 18) {
+            return tempList.get(1);
+        } else {
+            return tempList.get(2);
+        }
     }
 
 }
