@@ -40,9 +40,9 @@ public class WxDeviceMsgPushServiceImpl implements WxDeviceMsgPushService {
             anaList = FileUtil.readAna("D:\\wxMpTemplateMsg\\wxMpTemplateMsg\\src\\main\\resources\\ana.txt");
             colorList = FileUtil.readColor("D:\\wxMpTemplateMsg\\wxMpTemplateMsg\\src\\main\\resources\\color3.txt");
             cityMap = FileUtil.readCity("D:\\wxMpTemplateMsg\\wxMpTemplateMsg\\src\\main\\resources\\city.txt");
-            tempList.add("_xLqtgGZ9H78yD2q4RIiFMQwWw9IxvQnwUr8moJc52A");
-            tempList.add("nRu5LRWaUGjRl0HJ7Vc2MEAMSb2Hj3lF9WAstofvwLY");
-            tempList.add("h8fMpy5wHp8MXtXH0dbzRFaMdJ72GMuNkAHvaoLdqKY");
+            tempList.add("_xLqtgGZ9H78yD2q4RIiFMQwWw9IxvQnwUr8moJc52A");//早上好
+            tempList.add("nRu5LRWaUGjRl0HJ7Vc2MEAMSb2Hj3lF9WAstofvwLY");//中午好
+            tempList.add("h8fMpy5wHp8MXtXH0dbzRFaMdJ72GMuNkAHvaoLdqKY");//晚上好
         } catch (IOException e) {
             e.printStackTrace();
         }
